@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'copo.apps.CopoConfig',
     'teachers.apps.TeachersConfig',
     'django.contrib.admin',
     'django.contrib.auth',
