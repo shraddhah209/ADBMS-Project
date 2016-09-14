@@ -1,0 +1,20 @@
+Performance in CO
+{% load mathfilters %}
+<table border="2">
+
+    {%      for b in S %}
+    <tr>
+        <td>{{ b.student_name }} </td>
+        <td>{% with n=b.T1q1 d=5 %} {{ n|div:d }} {% endwith %}</td>
+        <td>{% with n=b.T1q2 d=5 %} {{ n|div:d }}{% endwith %}</td>
+        <td>{% with n=b.T1q3 d=5 %} {{ n|div:d }}{% endwith %}</td>
+        <td>{% with n=b.A1 d=5 %} {{ n|div:d }}{% endwith %}</td>
+        <td>{% with n=b.Exp1 d=10 %} {{ n|div:d }}{% endwith %}</td>
+        <td>{% with n=b.Exp2 d=10 %} {{ n|div:d }}{% endwith %}</td>
+        <td>{% with n=b.Exp3 d=10 %} {{ n|div:d }}{% endwith %}</td>
+        <td>{% with n=b.Exp4 d=10 %} {{ n|div:d }}{% endwith %}</td>
+    </tr>
+    {%      endfor %}
+
+</table>
+
