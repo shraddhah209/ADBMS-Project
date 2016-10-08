@@ -4,7 +4,6 @@ from django.template import loader
 from .models import COadbms,PO, COatdadbms
 from teachers.models import Students
 from statistics import *
-#from .templatetags import mathfilters
 # Create your views here.
 
 
