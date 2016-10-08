@@ -30,3 +30,4 @@ class COatdadbms(models.Model):
 
     def __str__(self):
         return self.cono + ' - ' + self.atd
+
