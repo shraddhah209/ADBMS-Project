@@ -15,7 +15,7 @@ from oauth2client.service_account import ServiceAccountCredentials
 def studentDB(request):
     json_key = 'Adbms-7c8aa9cf0720.json'
     scope = ['https://spreadsheets.google.com/feeds']
-    credentials = ServiceAccountCredentials.from_json_keyfile_name('c:/Users/Nirmit/Downloads/Adbms-7c8aa9cf0720.json', scope)
+    credentials = ServiceAccountCredentials.from_json_keyfile_name('c:/Users/Sarbjit/Desktop/Adbms-7c8aa9cf0720.json', scope)
     gc = gspread.authorize(credentials)
     wks = gc.open("test").sheet1
     val = wks.acell('A1').value
