@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.core.urlresolvers import reverse
 
 class COadbms(models.Model):
     co_no = models.CharField(max_length=2)
@@ -27,6 +27,9 @@ class PO(models.Model):
 class COatdadbms(models.Model):
     cono = models.CharField(max_length=2)
     atd = models.CharField(max_length=50)
+
+    def get_absolute_url(self):
+        return reverse('copo', 'index')
 
     def __str__(self):
         return self.cono + ' - ' + self.atd

@@ -6,5 +6,19 @@
 </head>
 <body>
 
+<h1> Program objectives of Engineerng program Information Technology</h1>
+<h2><table>
+ {%     for b in p %}
+    <tr>
+        <td>
+        {{ b.po_no }}.
+    </td>
+    <td>
+        {{ b.description }}
+    </td>
+    </tr>
+    {% endfor %}
+</table>
+    </h2>
 </body>
 </html>
