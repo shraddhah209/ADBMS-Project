@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.core.urlresolvers import reverse
 class Students(models.Model):
 
     student_roll = models.AutoField(primary_key=True, unique=True, editable=False)
