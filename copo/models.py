@@ -4,7 +4,7 @@ from django.core.urlresolvers import reverse
 class COadbms(models.Model):
     co_no = models.CharField(max_length=2)
     description = models.CharField(max_length=500)
-    bloomlevel = models.CharField(max_length=50 , default='Knowledge')
+    bloomlevel = models.CharField(max_length=50, default='Knowledge')
     po1 = models.CharField(max_length=1)
     po2 = models.CharField(max_length=1)
     po3 = models.CharField(max_length=1)

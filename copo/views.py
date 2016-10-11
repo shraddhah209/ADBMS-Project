@@ -26,11 +26,9 @@ def ViewCO(request):
             n = str(u.atd)
             m = getattr(b, n)
             p += int(m)
-    p = int(p / noofstudents)
     context = {
         "S": S,
         "a": Atdmap,
-        "p": p,
     }
     template = loader.get_template("copo/ViewCO.html")
 
@@ -50,7 +48,8 @@ class AddCOatd(CreateView):
     fields = ['cono', 'atd']
 
 def FinalADBMS(request):
-    html = ""
+    html = "<table border =2><th>CO<td>Term test 1</td><td>Term test 2\
+        </td><td>Assignment</td><td>Experiment</td><td>Total</td></th>"
     c = 1
     ptotal = 0
     Atdmap1 = COatdadbms.objects.all()
@@ -61,6 +60,7 @@ def FinalADBMS(request):
     patternass = re.compile("^([A][1-2]+)+$")
     patternexp = re.compile("^([E][x][p][1,2,3,4,5,6,7,8,9,10]+)+$")
     while c <= 5:
+        k = 0
         pt1 = 0
         pt2 = 0
         pa = 0
@@ -77,33 +77,54 @@ def FinalADBMS(request):
                     t1 += 1
                     for b in S:
                         m = getattr(b, n)
-                        pt1 += int(m)
+                        if m != 0:
+                            pt1 += int(m)
+                        else:
+                            t1 -= 1
+                            break
                 if patterntest2.match(n):
                     t2 += 1
                     for b in S:
                         m = getattr(b, n)
-                        pt2 += int(m)
+                        if m != 0:
+                            pt2 += int(m)
+                        else:
+                            t2 -= 1
+                            break
                 if patternass.match(n):
                     ass += 1
                     for b in S:
                         m = getattr(b, n)
-                        pa += int(m)
+                        if m != 0:
+                            pa += int(m)
+                        else:
+                            ass -= 1
+                            break
                 if patternexp.match(n):
                     exp += 1
                     for b in S:
                         m = getattr(b, n)
-                        pexp += int(m)
+                        if m != 0:
+                            pexp += int(m)
+                        else:
+                            exp -= 1
+                            break
         if t1:
+            k += 1
             pt1 = int(pt1 * 100 / (noofstudents * 5 * t1))
         if t2:
+            k += 1
             pt2 = int(pt2 * 100 / (noofstudents * 5 * t2))
         if ass:
+            k += 1
             pa = int(pa * 100 / (noofstudents * 5 * ass))
         if exp:
+            k += 1
             pexp = int(pexp * 100 / (noofstudents * 10 * exp))
-        ptotal = int(pt1 + pt2 + pa + pexp) / 4
-        html += str(c) + "t1   " + str(pt1) + "  t2    " + str(pt2) + "  Ass   " + str(pa) + "  Exp   " + str(pexp) + "  Total   " + str(ptotal)+"<br>"
+        ptotal = int(pt1 + pt2 + pa + pexp) / k
+        html += "<tr><td>" + str(c) + "</td><td>" + str(pt1) + "</td><td>" + str(pt2) + "</td><td>" + str(pa) + "</td><td>" + str(pexp) + "</td><td>" + str(ptotal)+"</td></tr>"
         c += 1
+    html += "</table>"
     return HttpResponse(html)
 
 
