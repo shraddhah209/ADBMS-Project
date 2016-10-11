@@ -48,10 +48,9 @@ class AddCOatd(CreateView):
     fields = ['cono', 'atd']
 
 def FinalADBMS(request):
-    html = "<table border =2><th>CO<td>Term test 1</td><td>Term test 2\
-        </td><td>Assignment</td><td>Experiment</td><td>Total</td></th>"
+    html = "<table border =2><tr><th>CO</th><th>Term test 1</th><th>Term test 2\
+        </th><th>Assignment</th><th>Experiment</th><th>Total</th></tr>"
     c = 1
-    ptotal = 0
     Atdmap1 = COatdadbms.objects.all()
     S = Students.objects.all()
     noofstudents = Students.objects.all().count()
@@ -111,17 +110,17 @@ def FinalADBMS(request):
                             break
         if t1:
             k += 1
-            pt1 = int(pt1 * 100 / (noofstudents * 5 * t1))
+            pt1 = round(pt1 * 100 / (noofstudents * 5 * t1), 2)
         if t2:
             k += 1
-            pt2 = int(pt2 * 100 / (noofstudents * 5 * t2))
+            pt2 = round(pt2 * 100 / (noofstudents * 5 * t2), 2)
         if ass:
             k += 1
-            pa = int(pa * 100 / (noofstudents * 5 * ass))
+            pa = round(pa * 100 / (noofstudents * 5 * ass), 2)
         if exp:
             k += 1
-            pexp = int(pexp * 100 / (noofstudents * 10 * exp))
-        ptotal = int(pt1 + pt2 + pa + pexp) / k
+            pexp = round(pexp * 100 / (noofstudents * 10 * exp), 2)
+        ptotal = round((pt1 + pt2 + pa + pexp) / k, 2)
         html += "<tr><td>" + str(c) + "</td><td>" + str(pt1) + "</td><td>" + str(pt2) + "</td><td>" + str(pa) + "</td><td>" + str(pexp) + "</td><td>" + str(ptotal)+"</td></tr>"
         c += 1
     html += "</table>"
