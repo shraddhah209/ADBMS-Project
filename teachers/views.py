@@ -1,7 +1,8 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template import loader
 from django.shortcuts import render, redirect
+from django.contrib import auth
 from django.contrib.auth import authenticate, login
 from django.views import generic
 from django.views.generic import View
@@ -15,7 +16,7 @@ from oauth2client.service_account import ServiceAccountCredentials
 def studentDB(request):
     json_key = 'Adbms-7c8aa9cf0720.json'
     scope = ['https://spreadsheets.google.com/feeds']
-    credentials = ServiceAccountCredentials.from_json_keyfile_name('c:/Users/Sarbjit/Desktop/Adbms-7c8aa9cf0720.json', scope)
+    credentials = ServiceAccountCredentials.from_json_keyfile_name('c:/Users/Nirmit/Downloads/Adbms-7c8aa9cf0720.json', scope)
     gc = gspread.authorize(credentials)
     wks = gc.open("test").sheet1
     val = wks.acell('A1').value
@@ -50,14 +51,17 @@ class UserFormView(View):
 
         if form.is_valid():
             user = form.save(commit=False)
-            username = form.cleaned_data['username']
-            password = form.cleaned_data['password']
-
+            username=request.POST.get('username','')
+            password=request.POST.get('password','')
+            email=request.POST.get('email','')
+            #username = form.cleaned_data['username']
+            #password = form.cleaned_data['password']
+            #email=form.cleaned_data['email']
             # to change users password
             user.set_password(password)
             user.save()
 
-            user = authenticate(username=username, password=password)
+            user = auth.authenticate(username=username, password=password, email=email)
 
             if user is not None:
                 if user.is_active:
