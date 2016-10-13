@@ -16,23 +16,39 @@ def index(request):
 
 
 def ViewCO(request):
-    p = 0
+    #html =""
     Atdmap = COatdadbms.objects.filter(cono=1)
     S = Students.objects.all()
-    noofstudents = Students.objects.all().count()
-
-    for u in Atdmap:
-        for b in S:
+    patterntesta = re.compile("[T][1-2]q[1-4]|[A][1-2]")
+    #patternexp = re.compile("^([E][x][p][1,2,3,4,5,6,7,8,9,10]+)+$")
+    total = []
+    for b in S:
+        ta = 0
+        texp = 0
+        pta = 0
+        pexp = 0
+        for u in Atdmap:
             n = str(u.atd)
             m = getattr(b, n)
-            p += int(m)
+            if patterntesta.match(n):
+                ta += 1
+                pta += int(m)
+            else:
+                texp += 1
+                pexp += int(m)
+        ttl = (((pta * 100)/(5 * ta)) + ((pexp * 100)/(10 * texp))) / 2
+        total.append(ttl)
+    l = len(total)
+    #html += "<br>" + str(total)
     context = {
         "S": S,
         "a": Atdmap,
+        "total": total,
+        "l": l,
     }
     template = loader.get_template("copo/ViewCO.html")
-
     return HttpResponse(template.render(context, request))
+
 
 def ViewPO(request):
     p = PO.objects.all()
@@ -64,7 +80,6 @@ def FinalADBMS(request):
         pt2 = 0
         pa = 0
         pexp = 0
-        ptotal = 0
         t1 = 0
         t2 = 0
         exp = 0
