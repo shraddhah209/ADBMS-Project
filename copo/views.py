@@ -1,4 +1,3 @@
-#from django.shortcuts import render
 from django.views.generic.edit import CreateView,UpdateView,DeleteView
 from django.http import HttpResponse
 from django.template import loader
@@ -16,23 +15,34 @@ def index(request):
 
 
 def ViewCO(request):
-    p = 0
     Atdmap = COatdadbms.objects.filter(cono=1)
     S = Students.objects.all()
-    noofstudents = Students.objects.all().count()
-
-    for u in Atdmap:
-        for b in S:
+    patterntesta = re.compile("[T][1-2]q[1-4]|[A][1-2]")
+    total = []
+    for b in S:
+        ta = 0
+        texp = 0
+        pta = 0
+        pexp = 0
+        for u in Atdmap:
             n = str(u.atd)
             m = getattr(b, n)
-            p += int(m)
+            if patterntesta.match(n):
+                ta += 1
+                pta += int(m)
+            else:
+                texp += 1
+                pexp += int(m)
+        ttl = (((pta * 100)/(5 * ta)) + ((pexp * 100)/(10 * texp))) / 2
+        total.append(ttl)
     context = {
         "S": S,
         "a": Atdmap,
+        "total": total,
     }
     template = loader.get_template("copo/ViewCO.html")
-
     return HttpResponse(template.render(context, request))
+
 
 def ViewPO(request):
     p = PO.objects.all()
@@ -64,7 +74,6 @@ def FinalADBMS(request):
         pt2 = 0
         pa = 0
         pexp = 0
-        ptotal = 0
         t1 = 0
         t2 = 0
         exp = 0

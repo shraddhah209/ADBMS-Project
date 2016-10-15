@@ -1,6 +1,28 @@
-Performance in CO
+
 {% load getattribute %}
-<table border="2">
+
+<style>
+    table.one {
+    float: left;
+    display: inline-block;
+}
+
+table.two   {
+    float: left;
+    display: inline-block;
+}​
+</style>
+<table class="one" border="2">
+    <tr>
+        <th> Student Name</th>
+        {%      for u in a %}
+        <th>
+            {{ u.atd }}
+        </th>
+        {%      endfor %}
+
+    </tr>
+
 
     {%     for b in S %}
     <tr>
@@ -14,9 +36,20 @@ Performance in CO
        </td>
 
         {%      endfor %}
+
 </tr>
     {%      endfor %}
 
 </table>
 
+<table class="two" border="2">
+    <tr><th>Total % in CO</th></tr>
+    {%     for i in total %}
+    <tr>
+        <td>
 
+            {{ i }}
+
+        </td>
+    </tr>{%      endfor %}
+</table>
