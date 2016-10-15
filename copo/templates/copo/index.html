@@ -1,10 +1,41 @@
-Students:
-<ul>
-    {% for s in sh%}
-    <li>
-        {{s.co_no}}
-        {{s.description}}
-    </li>
-    {% endfor %}
-</ul>>
 
+<table border="2">
+    <tr>
+        <th>   Co_no </th>
+    <th> Description </th>
+    <th>    Bloom Level </th>
+    <th>    PO1 </th>
+    <th>    PO2 </th>
+    <th>    PO3 </th>
+    <th>    PO4 </th>
+    <th>    PO5 </th>
+    <th>    PO6 </th>
+    </tr>
+    {% for s in sh%}
+    <tr>
+    <td>   {{s.co_no}} </td>
+    <td>    {{s.description}} </td>
+    <td>    {{s.bloomlevel}} </td>
+    <td>    {{s.po1}} </td>
+    <td>    {{s.po2}} </td>
+    <td>    {{s.po3}} </td>
+    <td>    {{s.po4}} </td>
+    <td>    {{s.po5}} </td>
+    <td>    {{s.po6}} </td>
+    </tr>
+    {% endfor %}
+</table>
+<br>
+<br>
+<br>
+<a href ="http://127.0.0.1:8000/copo/finalCO/"><button>Final Course Outcome</button></a>
+<br>
+<br>
+<br>
+<a href ="http://127.0.0.1:8000/copo/selectCORange/"><button>View Performance of Class</button></a><br>
+<br>
+<br>
+<a href ="http://127.0.0.1:8000/copo/po/"><button>View Program Objectives</button></a><br>
+<br>
+<br>
+<a href ="http://127.0.0.1:8000/copo/addCOAtd/"><button>Add Course Outcome-Atd map</button></a>

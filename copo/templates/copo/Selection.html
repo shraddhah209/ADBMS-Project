@@ -1,0 +1,20 @@
+
+
+<head>
+    <title>Select CO % range</title>
+
+</head>
+<body>
+<form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+ Select Course Outcome:
+    <select name="co">
+{% for entry in co %}
+    <option value="{{ entry.co_no }}">{{ entry.description }}</option>
+{% endfor %}
+</select>
+    {{ form.as_p }}
+    <button type="submit">Submit</button>
+</form>
+</body>
+</html>

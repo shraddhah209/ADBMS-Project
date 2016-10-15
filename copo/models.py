@@ -1,5 +1,7 @@
 from django.db import models
 from django.core.urlresolvers import reverse
+from django.http import HttpResponse,HttpResponseRedirect
+from django.shortcuts import render
 
 class COadbms(models.Model):
     co_no = models.CharField(max_length=2)
@@ -29,7 +31,7 @@ class COatdadbms(models.Model):
     atd = models.CharField(max_length=50)
 
     def get_absolute_url(self):
-        return reverse('copo', 'index')
+        return "http://127.0.0.1:8000/copo/finalCO/"
 
     def __str__(self):
         return self.cono + ' - ' + self.atd

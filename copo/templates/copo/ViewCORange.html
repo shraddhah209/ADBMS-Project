@@ -1,0 +1,62 @@
+
+{% load getattribute %}
+
+<style>
+    table.one {
+    float: left;
+    display: inline-block;
+}
+
+table.two   {
+    float: left;
+    display: inline-block;
+}​
+</style>
+{% for c in coobj %}
+<h2>{{c.co_no}}. {{ c.description }}</h2>
+{% endfor %}
+<table class="one" border="4">
+    <tr><th>Student Roll no</th>
+        <th> Student Name</th>
+        {%      for u in Atdmap %}
+        <th>
+            {{ u.atd }}
+        </th>
+        {%      endfor %}
+
+    </tr>
+
+    {%     for b in S %}
+    {% for n in rollno %}
+    {% if n == b.student_roll %}
+    <tr> <td>
+        {{ b.student_roll }}
+    </td>
+        <td>
+        {{ b.student_name }}
+    </td>
+
+    {%      for u in Atdmap %}
+        <td>
+            {{ b|getattribute:u.atd }}
+       </td>
+
+        {%      endfor %}
+
+</tr>{% endif %}
+    {% endfor %}
+    {%      endfor %}
+
+</table>
+
+<table class="two" border="4">
+    <tr><th>Total % in CO {{ co }}</th></tr>
+    {%     for i in total %}
+    <tr>
+        <td>
+
+            {{ i }}
+
+        </td>
+    </tr>{%      endfor %}
+</table>
