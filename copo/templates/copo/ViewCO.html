@@ -1,4 +1,7 @@
+{% extends 'teachers/base.html' %}
 
+{% block body %}
+            <div class="col-md-6">
 {% load getattribute %}
 
 <style>
@@ -12,12 +15,14 @@ table.two   {
     display: inline-block;
 }​
 </style>
+
 <table class="one" border="2">
     <tr>
-        <th> Student Name</th>
+        <th> &nbsp; Student Name &nbsp; &nbsp;</th>
         {%      for u in a %}
-        <th>
+        <th> &nbsp;
             {{ u.atd }}
+            &nbsp;
         </th>
         {%      endfor %}
 
@@ -26,12 +31,12 @@ table.two   {
 
     {%     for b in S %}
     <tr>
-        <td>
-        {{ b.student_name }}
+        <td> &nbsp;
+        {{ b.student_name }} &nbsp;
     </td>
 
     {%      for u in a %}
-        <td>
+        <td> &nbsp; &nbsp;
             {{ b|getattribute:u.atd }}
        </td>
 
@@ -43,13 +48,16 @@ table.two   {
 </table>
 
 <table class="two" border="2">
-    <tr><th>Total % in CO</th></tr>
+    <tr><th> &nbsp; Total % in CO </th></tr>
     {%     for i in total %}
     <tr>
         <td>
-
+&nbsp; &nbsp; &nbsp; &nbsp;
             {{ i }}
 
         </td>
     </tr>{%      endfor %}
 </table>
+                </div>
+
+{% endblock %}

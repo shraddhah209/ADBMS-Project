@@ -1,13 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title></title>
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-</head>
+{% extends 'teachers/base.html' %}
+
+{% block body %}
+
+
 <style type="text/css">
          body
         {
@@ -15,6 +10,8 @@
             background-image: url("http://25.media.tumblr.com/tumblr_lz6djbYRjk1qzmrwlo1_1280.png");
             background-repeat: no-repeat;
             background-size: cover;
+            margin-top: -70px;
+            margin-left: 50px;
         }
     </style>
 <body>
@@ -111,5 +108,6 @@
 
 
 
-    </body>
-</html>
+</body>
+
+{% endblock %}
