@@ -1,10 +1,49 @@
-Students:
-<ul>
-    {% for s in sh%}
-    <li>
-        {{s.co_no}}
-        {{s.description}}
-    </li>
-    {% endfor %}
-</ul>>
+{% extends 'teachers/base.html' %}
 
+{% block body %}
+<div  style="margin-left: 30px;">
+
+
+<table border="2">
+    <tr>
+        <th>  &nbsp; Co_no  &nbsp;</th>
+    <th> &nbsp; &nbsp;Description </th>
+    <th> &nbsp;   Bloom Level&nbsp; </th>
+    <th> &nbsp;   PO1&nbsp; </th>
+    <th>  &nbsp;  PO2 &nbsp;</th>
+    <th> &nbsp;   PO3&nbsp; </th>
+    <th>  &nbsp;  PO4 &nbsp;</th>
+    <th>  &nbsp;  PO5 &nbsp;</th>
+    <th>  &nbsp;  PO6 &nbsp;</th>
+    </tr>
+    {% for s in sh%}
+    <tr>
+    <td>  &nbsp; &nbsp; &nbsp; {{s.co_no}} </td>
+    <td>  &nbsp;  {{s.description}} </td>
+    <td>  &nbsp;  {{s.bloomlevel}} &nbsp; </td>
+    <td>  &nbsp; &nbsp; {{s.po1}} </td>
+    <td>   &nbsp; &nbsp; {{s.po2}} </td>
+    <td>  &nbsp; &nbsp; {{s.po3}} </td>
+    <td>  &nbsp; &nbsp; {{s.po4}} </td>
+    <td>  &nbsp; &nbsp; {{s.po5}} </td>
+    <td>  &nbsp; &nbsp; {{s.po6}} </td>
+    </tr>
+    {% endfor %}
+</table>
+<br>
+<br>
+<br>
+<a href ="http://127.0.0.1:8000/copo/finalCO/"><button>Final Course Outcome</button></a>
+<br>
+<br>
+<br>
+<a href ="http://127.0.0.1:8000/copo/selectCORange/"><button>View Performance of Class</button></a><br>
+<br>
+<br>
+<a href ="http://127.0.0.1:8000/copo/po/"><button>View Program Objectives</button></a><br>
+<br>
+<br>
+<a href ="http://127.0.0.1:8000/copo/addCOAtd/"><button>Add Course Outcome-Atd map</button></a>
+
+</div>
+{% endblock %}

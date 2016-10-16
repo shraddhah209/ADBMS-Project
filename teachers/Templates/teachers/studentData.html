@@ -1,32 +1,13 @@
-<script type="text/javascript">
-   function logProductInfo() {
-   alert('{{ wks }} ');
-}
-
-
-</script>
+{% extends 'teachers/base.html' %}
+<!--Students:
 
 <iframe src="https://docs.google.com/spreadsheets/d/1a27LCrwpxhsws3TNIFYQAIoYrD5ZSWiadjXf_6vxED4/edit?usp=sharing" height="500" width="1000" frameborder="1px"> </iframe>
-<br><br>
-<input type="submit" onclick="logProductInfo()" />
+<br>
+{{ value }}
+<br>
+{{ value2 }}-->
 
-{% if error_message %}
-    <p><strong> {{ error_message }} </strong> </p>
-{% endif %}
-<br><br>
-refresh to save data
-
-<!-- <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-
- <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-</head>
-<body>
-
+{% block body %}
 
 
     	<div class="item content" id="content_section1">
@@ -47,14 +28,14 @@ refresh to save data
     					<p>
     						Nam commodo elit at enim congue commodo vel viverra enim. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec gravida aliquam fringilla.
     					</p>
-    					</div>
+    					</div><!-- /.editContent -->
 
     					<p>
     						<a href="" class="btn btn-primary btn-embossed btn-wide"><span class="fa fa-cloud-upload"></span> Now Do Something!</a>
     						<a href="" class="btn btn-info btn-embossed btn-wide"><span class="fa fa-check"></span> Now Do Something!</a>
     					</p>
 
-    				</div>
+    				</div><!-- ./col-md-6 -->
 
     				<div class="col-md-6">
 
@@ -65,13 +46,13 @@ refresh to save data
     						<div class="frameCover" data-type="video"></div>
     					</div>
 
-    				</div>
+    				</div><!-- /.col-md-6 -->
 
-    			</div>
+    			</div><!-- /.row -->
 
-    		</div>
+    		</div><!-- /.container -->
 
-    	</div>
+    	</div><!-- /.item -->
 
 
 
@@ -104,9 +85,9 @@ refresh to save data
     									<a href="#">Login <span class="fa fa-lock"></span></a>
     								</li>
     							</ul>
-    						</div>
+    						</div><!-- /.navbar-collapse -->
 
-    					</div>
+    					</div><!-- /.container -->
 
     				</nav>
 
@@ -126,13 +107,13 @@ refresh to save data
 
     					</div>
 
-    				</div>
+    				</div><!-- /.row -->
 
-    			</div>
+    			</div><!-- /.container -->
 
-    		</div>
+    		</div><!-- /.wrapper -->
 
-    	</header>
+    	</header><!-- /.item -->
 
 
 
@@ -148,9 +129,9 @@ refresh to save data
     						We're awesome - get to know us better!
     					</p>
 
-    				</div>
+    				</div><!-- /.col-md-12 -->
 
-    			</div>
+    			</div><!-- /.row -->
 
     			<div class="row margin-bottom-20">
 
@@ -188,7 +169,7 @@ refresh to save data
 
     							</div>
 
-    						</div>
+    						</div><!-- /.col-md-6 -->
 
     						<div class="col-md-6 clearfix">
 
@@ -220,9 +201,9 @@ refresh to save data
 
     							</div>
 
-    						</div>
+    						</div><!-- /.col-md-6 -->
 
-    					</div>
+    					</div><!-- /.row -->
 
     					<div class="row margin-bottom-40">
 
@@ -256,7 +237,7 @@ refresh to save data
 
     							</div>
 
-    						</div>
+    						</div><!-- /.col-md-6 -->
 
     						<div class="col-md-6 clearfix">
 
@@ -288,17 +269,18 @@ refresh to save data
 
     							</div>
 
-    						</div>
+    						</div><!-- /.col-md-6 -->
 
-    					</div>
+    					</div><!-- /.row -->
 
-    				</div>
+    				</div><!-- /.col-md-8 -->
 
-    			</div>
-    		</div>
+    			</div><!-- /.row -->
 
-    	</div>
+    		</div><!-- /.container -->
+
+    	</div><!-- /.item -->
 
 
 
-</body>  -->
+{% endblock %}

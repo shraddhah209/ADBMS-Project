@@ -1,0 +1,20 @@
+{% extends 'teachers/base.html' %}
+
+{% block body %}
+<div  style="margin-left: 30px;">
+
+<form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+ <b>Select Course Outcome : &nbsp;</b>
+    <select name="co">
+{% for entry in co %}
+    <option value="{{ entry.co_no }}">{{ entry.description }}</option>
+{% endfor %}
+</select>
+    <br><br>
+    {{ form.as_p }}
+    <button type="submit">Submit</button>
+</form>
+
+</div>
+{% endblock %}

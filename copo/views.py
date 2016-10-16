@@ -1,13 +1,16 @@
-from django.views.generic.edit import CreateView,UpdateView,DeleteView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.http import HttpResponse
+from django.views.generic.edit import FormView
 from django.template import loader
-from .models import COadbms,PO, COatdadbms
+from copo.forms import SelectCOperRange
+from .models import COadbms, PO, COatdadbms
 from teachers.models import Students
+from django.shortcuts import render
 import re
 
 def index(request):
     s = COadbms.objects.all()
-    template = loader.get_template("CO/index.html")
+    template = loader.get_template("copo/index.html")
     context = {
         "sh": s,
     }
@@ -135,11 +138,58 @@ def FinalADBMS(request):
     html += "</table>"
     return HttpResponse(html)
 
-
-
-
-
-
+def COSelectRange(request):
+    form_class = SelectCOperRange
+    co = COadbms.objects.all()
+    if request.method == 'POST':
+        form = form_class(data=request.POST)
+        if form.is_valid():
+            rmin = request.POST.get(
+                'rangemin'
+                , '')
+            rmax = request.POST.get(
+                'rangemax'
+                , '')
+            selected_co = request.POST.get('co')
+            selected_co = int(selected_co)
+            Atdmap = COatdadbms.objects.filter(cono=selected_co)
+            coobj = COadbms.objects.filter(co_no=selected_co)
+            S = Students.objects.all()
+            patterntesta = re.compile("[T][1-2]q[1-4]|[A][1-2]")
+            total = []
+            rollno = []
+            for b in S:
+                ta = 0
+                texp = 0
+                pta = 0
+                pexp = 0
+                for u in Atdmap:
+                    n = str(u.atd)
+                    m = getattr(b, n)
+                    if patterntesta.match(n):
+                        ta += 1
+                        pta += int(m)
+                    else:
+                        texp += 1
+                        pexp += int(m)
+                if ta!=0 and texp!=0:
+                    ttl = int((((pta * 100) / (5 * ta)) + ((pexp * 100) / (10 * texp))) / 2)
+                elif texp!=0:
+                    ttl = int((pexp * 100) / (10 * texp))
+                else:
+                    ttl = int((pta * 100) / (5 * ta))
+                rmin = int(rmin)
+                rmax = int(rmax)
+                if ttl >= rmin and ttl <= rmax:
+                    rollno.append(b.student_roll)
+                    total.append(ttl)
+                context = {
+                    'rmin': rmin, 'rmax': rmax, 'total': total, 'S': S, 'Atdmap': Atdmap,
+                    'rollno': rollno, 'co':selected_co, 'coobj':coobj,
+                }
+            template = loader.get_template("copo/ViewCORange.html")
+            return HttpResponse(template.render(context, request))
+    return render(request, 'copo/Selection.html', {'form': form_class, 'co':co})
 
 
 
