@@ -1,13 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Program objectives</title>
-</head>
-<body>
+{% extends 'teachers/base.html' %}
 
+{% block body %}
+<div  style="margin-left: 30px;">
 <h1> Program objectives of Engineerng program Information Technology</h1>
-<h2><table>
+<h3><table>
  {%     for b in p %}
     <tr>
         <td>
@@ -19,6 +15,6 @@
     </tr>
     {% endfor %}
 </table>
-    </h2>
-</body>
-</html>
+    </h3>
+</div>
+{% endblock %}
