@@ -1,13 +1,22 @@
+<script type="text/javascript">
+   function logProductInfo() {
+   alert('{{ wks }} ');
+}
 
-<!--Students:
+
+</script>
 
 <iframe src="https://docs.google.com/spreadsheets/d/1a27LCrwpxhsws3TNIFYQAIoYrD5ZSWiadjXf_6vxED4/edit?usp=sharing" height="500" width="1000" frameborder="1px"> </iframe>
-<br>
-{{ value }}
-<br>
-{{ value2 }}-->
+<br><br>
+<input type="submit" onclick="logProductInfo()" />
 
-<head>
+{% if error_message %}
+    <p><strong> {{ error_message }} </strong> </p>
+{% endif %}
+<br><br>
+refresh to save data
+
+<!-- <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -38,14 +47,14 @@
     					<p>
     						Nam commodo elit at enim congue commodo vel viverra enim. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec gravida aliquam fringilla.
     					</p>
-    					</div><!-- /.editContent -->
+    					</div>
 
     					<p>
     						<a href="" class="btn btn-primary btn-embossed btn-wide"><span class="fa fa-cloud-upload"></span> Now Do Something!</a>
     						<a href="" class="btn btn-info btn-embossed btn-wide"><span class="fa fa-check"></span> Now Do Something!</a>
     					</p>
 
-    				</div><!-- ./col-md-6 -->
+    				</div>
 
     				<div class="col-md-6">
 
@@ -56,13 +65,13 @@
     						<div class="frameCover" data-type="video"></div>
     					</div>
 
-    				</div><!-- /.col-md-6 -->
+    				</div>
 
-    			</div><!-- /.row -->
+    			</div>
 
-    		</div><!-- /.container -->
+    		</div>
 
-    	</div><!-- /.item -->
+    	</div>
 
 
 
@@ -95,9 +104,9 @@
     									<a href="#">Login <span class="fa fa-lock"></span></a>
     								</li>
     							</ul>
-    						</div><!-- /.navbar-collapse -->
+    						</div>
 
-    					</div><!-- /.container -->
+    					</div>
 
     				</nav>
 
@@ -117,13 +126,13 @@
 
     					</div>
 
-    				</div><!-- /.row -->
+    				</div>
 
-    			</div><!-- /.container -->
+    			</div>
 
-    		</div><!-- /.wrapper -->
+    		</div>
 
-    	</header><!-- /.item -->
+    	</header>
 
 
 
@@ -139,9 +148,9 @@
     						We're awesome - get to know us better!
     					</p>
 
-    				</div><!-- /.col-md-12 -->
+    				</div>
 
-    			</div><!-- /.row -->
+    			</div>
 
     			<div class="row margin-bottom-20">
 
@@ -179,7 +188,7 @@
 
     							</div>
 
-    						</div><!-- /.col-md-6 -->
+    						</div>
 
     						<div class="col-md-6 clearfix">
 
@@ -211,9 +220,9 @@
 
     							</div>
 
-    						</div><!-- /.col-md-6 -->
+    						</div>
 
-    					</div><!-- /.row -->
+    					</div>
 
     					<div class="row margin-bottom-40">
 
@@ -247,7 +256,7 @@
 
     							</div>
 
-    						</div><!-- /.col-md-6 -->
+    						</div>
 
     						<div class="col-md-6 clearfix">
 
@@ -279,18 +288,17 @@
 
     							</div>
 
-    						</div><!-- /.col-md-6 -->
+    						</div>
 
-    					</div><!-- /.row -->
+    					</div>
 
-    				</div><!-- /.col-md-8 -->
+    				</div>
 
-    			</div><!-- /.row -->
+    			</div>
+    		</div>
 
-    		</div><!-- /.container -->
-
-    	</div><!-- /.item -->
-
+    	</div>
 
 
-</body>
+
+</body>  -->

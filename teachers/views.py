@@ -1,10 +1,11 @@
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response,get_object_or_404
 from django.template import loader
 from django.shortcuts import render, redirect
 from django.contrib import auth
 from django.contrib.auth import authenticate, login
 from django.views import generic
+from django import forms
 from django.views.generic import View
 from django.views.generic.edit import CreateView
 from django.core.urlresolvers import reverse_lazy
@@ -16,13 +17,16 @@ from oauth2client.service_account import ServiceAccountCredentials
 def studentDB(request):
     json_key = 'Adbms-7c8aa9cf0720.json'
     scope = ['https://spreadsheets.google.com/feeds']
-    credentials = ServiceAccountCredentials.from_json_keyfile_name('c:/Users/Nirmit/Downloads/Adbms-7c8aa9cf0720.json', scope)
+    credentials = ServiceAccountCredentials.from_json_keyfile_name('c:/Users/Sarbjit/Desktop/Adbms-7c8aa9cf0720.json', scope)
     gc = gspread.authorize(credentials)
     wks = gc.open("test").sheet1
-    val = wks.acell('A1').value
-    val2 = wks.acell('A2').value
-    return render_to_response('teachers/studentData.html', {'value': val , 'value2': val2})
-
+    all_students = Students.objects.all()
+    count = len(all_students)
+    blah = wks.col_values(2)
+    stud = Students(pk=(count+1))
+    stud.student_name = blah
+    stud.save()
+    return render_to_response('teachers/studentData.html', {'wks':count})
 
 def stud(request):
     all_students = Students.objects.all()
