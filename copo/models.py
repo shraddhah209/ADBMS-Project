@@ -31,7 +31,7 @@ class COatdadbms(models.Model):
     atd = models.CharField(max_length=50)
 
     def get_absolute_url(self):
-        return "http://127.0.0.1:8000/copo/finalCO/"
+        return "http://127.0.0.1:8000/copo/index/"
 
     def __str__(self):
         return self.cono + ' - ' + self.atd

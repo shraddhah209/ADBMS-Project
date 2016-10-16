@@ -1,11 +1,11 @@
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.http import HttpResponse
-from django.views.generic.edit import FormView
 from django.template import loader
 from copo.forms import SelectCOperRange
 from .models import COadbms, PO, COatdadbms
 from teachers.models import Students
 from django.shortcuts import render
+from django.db.models import Avg
 import re
 
 def index(request):
@@ -61,11 +61,23 @@ class AddCOatd(CreateView):
     fields = ['cono', 'atd']
 
 def FinalADBMS(request):
-    html = "<table border =2><tr><th>CO</th><th>Term test 1</th><th>Term test 2\
-        </th><th>Assignment</th><th>Experiment</th><th>Total</th></tr>"
+    html = "<style> tr:hover{background-color: #eaeaea;} tr {border: 1px solid;}</style>Attainment of Course Outcomes:<br><br><table border =2><tr><th rowspan=2 >Course Outcome</th><th colspan=3 >University Examination</th><th colspan=6 >Direct Method</th><th rowspan=2>Indirect method</th>\
+        </tr><tr><th>ESE</th><th>VIVA/PR</th><th>Avg</th><th>Term test 1</th><th>Term test 2\
+        </th><th>Assignment</th><th>Lab</th><th>Internal Assessment Average</th><th>Direct Avg</th></tr>"
     c = 1
     Atdmap1 = COatdadbms.objects.all()
     S = Students.objects.all()
+    sem = Students.objects.all().aggregate(Avg('final_marks'))
+    for key, value in sem.items():
+        semmarks = value
+    semmarks = int(semmarks)
+    semmarks = round((semmarks*100/80), 2)
+    v = Students.objects.all().aggregate(Avg('viva'))
+    for key, value in v.items():
+        viva = value
+    viva = int(viva)
+    viva = round((viva*100/25), 2)
+    avg = round(((viva + semmarks)/2), 2)
     noofstudents = Students.objects.all().count()
     patterntest1 = re.compile("^([T][1][q][1-4]+)+$")
     patterntest2 = re.compile("^([T][2][q][1-4]+)+$")
@@ -133,7 +145,16 @@ def FinalADBMS(request):
             k += 1
             pexp = round(pexp * 100 / (noofstudents * 10 * exp), 2)
         ptotal = round((pt1 + pt2 + pa + pexp) / k, 2)
-        html += "<tr><td>" + str(c) + "</td><td>" + str(pt1) + "</td><td>" + str(pt2) + "</td><td>" + str(pa) + "</td><td>" + str(pexp) + "</td><td>" + str(ptotal)+"</td></tr>"
+        davg = round(((avg +ptotal)/2), 2)
+        if c == 1:
+            html += "<tr><td>CO " + str(c) + "</td><td rowspan=5 >" + str(semmarks)+ "</td><td rowspan=5 >" + str(viva)+\
+                    "</td><td rowspan=5 >" + str(avg)+"</td><td>" +\
+                    str(pt1) + "</td><td>" + str(pt2) + "</td><td>" + str(pa) + "</td><td>" + str(pexp) + \
+                    "</td><td>" + str(ptotal)+"</td><td>" +str(davg) + "</td><td> - </td></tr>"
+        else:
+            html += "<tr><td>CO " + str(c) + "</td><td>" + str(pt1) + "</td><td>" + str(pt2) + "</td><td>" + str(
+                pa) + "</td><td>" + str(pexp) + "</td><td>" + str(ptotal) + "</td><td>" +str(davg) +\
+                    "</td><td> - </td></tr>"
         c += 1
     html += "</table>"
     return HttpResponse(html)
