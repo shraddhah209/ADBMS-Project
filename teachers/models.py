@@ -34,6 +34,8 @@ class Students(models.Model):
     Ass_avg = models.IntegerField(default=0)
     attendance = models.IntegerField(default=0)
     final_marks = models.IntegerField(default=0)
+    viva = models.IntegerField(default=23)
+
     def __str__(self):
         return str(self.student_roll)+". "+self.student_name
 
