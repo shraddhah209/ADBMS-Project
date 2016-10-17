@@ -24,6 +24,41 @@ def studentDB(request):
     student_list = ["student_roll","student_name","Exp1"]
     blah = Students.objects.all()
     count = len(blah)
+    c = 1
+    cell_list = wks.range('B2:AC75')
+    for cell in cell_list:
+        s = Students.objects.filter(pk=c)
+        for a in s:
+            wks.update_cell(c + 1, 1, a.student_roll)
+            wks.update_cell(c + 1, 2, a.student_name)
+            wks.update_cell(c + 1, 3, a.Exp1)
+            wks.update_cell(c + 1, 4, a.Exp2)
+            wks.update_cell(c + 1, 5, a.Exp3)
+            wks.update_cell(c + 1, 6, a.Exp4)
+            wks.update_cell(c + 1, 7, a.Exp5)
+            wks.update_cell(c + 1, 8, a.Exp6)
+            wks.update_cell(c + 1, 9, a.Exp7)
+            wks.update_cell(c + 1, 10, a.Exp8)
+            wks.update_cell(c + 1, 11, a.Exp9)
+            wks.update_cell(c + 1, 12, a.Exp10)
+            wks.update_cell(c + 1, 13, a.exp_avg)
+            wks.update_cell(c + 1, 14, a.T1q1)
+            wks.update_cell(c + 1, 15, a.T1q2)
+            wks.update_cell(c + 1, 16, a.T1q3)
+            wks.update_cell(c + 1, 17, a.T1q4)
+            wks.update_cell(c + 1, 18, a.T1_total)
+            wks.update_cell(c + 1, 19, a.T2q1)
+            wks.update_cell(c + 1, 20, a.T2q2)
+            wks.update_cell(c + 1, 21, a.T2q3)
+            wks.update_cell(c + 1, 22, a.T2q4)
+            wks.update_cell(c + 1, 23, a.T2_total)
+            wks.update_cell(c + 1, 24, a.TT_avg)
+            wks.update_cell(c + 1, 25, a.A1)
+            wks.update_cell(c + 1, 26, a.A2)
+            wks.update_cell(c + 1, 27, a.Ass_avg)
+            wks.update_cell(c + 1, 28, a.attendance)
+            wks.update_cell(c + 1, 29, a.final_marks)
+        c += 1
     return render(request,'teachers/studentData.html', {'wks':count})
 
 def save(request):
