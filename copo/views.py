@@ -92,13 +92,13 @@ def FinalADBMS(request):
    							</div>\
     						<div id='navbar-collapse-02' class='collapse navbar-collapse'>\
     							<ul class='nav navbar-nav' id='nav'>\
-    								<li ><a href='/copo/po'>VIEW PO</a></li>\
-    								<li ><a href='/copo/addCOAtd'>MAP COURSE OUTCOME</a></li>\
-									<li ><a href='/copo/finalCO'>FINAL CO</a></li>\
-									<li ><a href='/copo/selectCORange/'>SELECT CO RANGE</a></li>\
-									<li ><a href='/copo/index/'>INDEX</a></li>\
-                                    <li class='active '><a href="'/teachers/studentDB'">STUDENT DB</a></li>\
-    </ul>\
+    								<li ><a href='/copo/po'>VIEW POS</a></li> \
+									<li ><a href='/copo/index/'>VIEW COS</a></li>\
+									<li ><a href='/copo/addCOAtd'>MAP COURSE OUTCOME</a></li>\
+									<li ><a href='/copo/finalCO'>ATTAINMENT OF CO</a></li>\
+									<li ><a href='/copo/selectCORange/'>GET EACH STUDENTS ATTAINMENT</a></li>\
+                                    <li class='active'><a href='/teachers/studentDB'>STUDENT DB</a></li>\
+                                </ul>\
     							<ul class='nav navbar-nav navbar-right'>\
     								<li class='propClone'>\
     									<a href='{% url 'teachers:login' %}'>LOG OUT <span class='fa fa-lock'></span></a>\
@@ -112,7 +112,7 @@ def FinalADBMS(request):
     		</div><!-- /.wrapper -->\
 <br><br><br> <br><br>\
 </body><div  style='margin-left: 30px;'>\
-Attainment of Course Outcomes:<br><br><table border =2><tr><th rowspan=2 >Course Outcome</th><th colspan=3 >University Examination</th><th colspan=6 >Direct Method</th><th rowspan=2>Indirect method</th>\
+<CENTER><h4>Attainment of Course Outcomes:</h4><br><br><table border =2><tr><th rowspan=2 >Course Outcome</th><th colspan=3 >University Examination</th><th colspan=6 >Direct Method</th><th rowspan=2>Indirect method</th>\
         </tr><tr><th>ESE</th><th>VIVA/PR</th><th>Avg</th><th>Term test 1</th><th>Term test 2\
         </th><th>Assignment</th><th>Lab</th><th>Internal Assessment Average</th><th>Direct Avg</th></tr>"
     c = 1

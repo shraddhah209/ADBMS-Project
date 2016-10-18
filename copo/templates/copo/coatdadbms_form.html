@@ -1,8 +1,10 @@
 {% extends 'teachers/base.html' %}
 
 {% block body %}
-<div  style="margin-left: 30px;">
-
+<div  style="margin-left: 30px;"><center>
+<H4> Enter Course Outcome no. and Assessment Tool name:</H4>
+    <h5>Format: T<1/2>q<1/2/3/4> or A<1/2> or Exp<1-10></h5>
+    <br><br>
 <form action ="" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {% include 'copo/form-template.html' %}
