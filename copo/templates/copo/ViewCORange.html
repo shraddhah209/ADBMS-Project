@@ -1,4 +1,7 @@
+{% extends 'teachers/base.html' %}
 
+{% block body %}
+            <div class="col-md-6">
 {% load getattribute %}
 
 <style>
@@ -60,3 +63,6 @@ table.two   {
         </td>
     </tr>{%      endfor %}
 </table>
+
+</div>
+{% endblock %}

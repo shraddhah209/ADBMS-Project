@@ -12,7 +12,7 @@ def index(request):
     s = COadbms.objects.all()
     template = loader.get_template("copo/index.html")
     context = {
-        "sh": s,
+        "sh": s
     }
     return HttpResponse(template.render(context, request))
 
@@ -61,7 +61,58 @@ class AddCOatd(CreateView):
     fields = ['cono', 'atd']
 
 def FinalADBMS(request):
-    html = "<style> tr:hover{background-color: #eaeaea;} tr {border: 1px solid;}</style>Attainment of Course Outcomes:<br><br><table border =2><tr><th rowspan=2 >Course Outcome</th><th colspan=3 >University Examination</th><th colspan=6 >Direct Method</th><th rowspan=2>Indirect method</th>\
+    html = "<!DOCTYPE html>\
+<html >\
+<head>\
+    <meta charset='UTF-8'>\
+    <title></title>\
+    <link rel='stylesheet' href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>\
+    <link rel='stylesheet' href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css'>\
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js'></script>\
+    <script src='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>\
+	<script>\
+	$(function() {\
+        $('#nav li a').click(function() {\
+           $('#nav li').removeClass();\
+           $($(this).attr('href')).addClass('active');\
+        });\
+     });\
+</script>\
+</head>\
+<body>\
+    		<div class='wrapper'>\
+    			<div class='container'>\
+    				<nav role='navigation' class='navbar navbar-inverse navbar-embossed navbar-lg navbar-fixed-top'>\
+    					<div class='container'>\
+    						<div class='navbar-header'>\
+    							<button data-target='#navbar-collapse-02' data-toggle='collapse' class='navbar-toggle' type='button'>\
+    								<span class='sr-only'>Toggle navigation</span>\
+    							</button>\
+    							<a href='/teachers/subject' class='navbar-brand brand'> PROFE </a>\
+   							</div>\
+    						<div id='navbar-collapse-02' class='collapse navbar-collapse'>\
+    							<ul class='nav navbar-nav' id='nav'>\
+    								<li ><a href='/copo/po'>VIEW PO</a></li>\
+    								<li ><a href='/copo/addCOAtd'>MAP COURSE OUTCOME</a></li>\
+									<li ><a href='/copo/finalCO'>FINAL CO</a></li>\
+									<li ><a href='/copo/selectCORange/'>SELECT CO RANGE</a></li>\
+									<li ><a href='/copo/index/'>INDEX</a></li>\
+                                    <li class='active '><a href="'/teachers/studentDB'">STUDENT DB</a></li>\
+    </ul>\
+    							<ul class='nav navbar-nav navbar-right'>\
+    								<li class='propClone'>\
+    									<a href='{% url 'teachers:login' %}'>LOG OUT <span class='fa fa-lock'></span></a>\
+    								</li>\
+    							</ul>\
+    						</div><!-- /.navbar-collapse -->\
+    					</div><!-- /.container -->\
+    				</nav>\
+    				<!-- /.row -->\
+    			</div><!-- /.container -->\
+    		</div><!-- /.wrapper -->\
+<br><br><br> <br><br>\
+</body><div  style='margin-left: 30px;'>\
+Attainment of Course Outcomes:<br><br><table border =2><tr><th rowspan=2 >Course Outcome</th><th colspan=3 >University Examination</th><th colspan=6 >Direct Method</th><th rowspan=2>Indirect method</th>\
         </tr><tr><th>ESE</th><th>VIVA/PR</th><th>Avg</th><th>Term test 1</th><th>Term test 2\
         </th><th>Assignment</th><th>Lab</th><th>Internal Assessment Average</th><th>Direct Avg</th></tr>"
     c = 1
@@ -156,7 +207,7 @@ def FinalADBMS(request):
                 pa) + "</td><td>" + str(pexp) + "</td><td>" + str(ptotal) + "</td><td>" +str(davg) +\
                     "</td><td> - </td></tr>"
         c += 1
-    html += "</table>"
+    html += "</table></div>"
     return HttpResponse(html)
 
 def COSelectRange(request):
@@ -204,12 +255,13 @@ def COSelectRange(request):
                 if ttl >= rmin and ttl <= rmax:
                     rollno.append(b.student_roll)
                     total.append(ttl)
-                context = {
+
+        context = {
                     'rmin': rmin, 'rmax': rmax, 'total': total, 'S': S, 'Atdmap': Atdmap,
-                    'rollno': rollno, 'co':selected_co, 'coobj':coobj,
-                }
-            template = loader.get_template("copo/ViewCORange.html")
-            return HttpResponse(template.render(context, request))
+                    'rollno': rollno, 'co':selected_co, 'coobj':coobj
+        }
+        template = loader.get_template("copo/ViewCORange.html")
+        return HttpResponse(template.render(context, request))
     return render(request, 'copo/Selection.html', {'form': form_class, 'co':co})
 
 

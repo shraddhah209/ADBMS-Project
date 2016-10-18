@@ -39,4 +39,10 @@ class Students(models.Model):
     def __str__(self):
         return str(self.student_roll)+". "+self.student_name
 
+class Teacher(models.Model):
+    teacher_name = models.CharField(max_length=70)
+    subject_name = models.CharField(max_length=70)
+
+    def __str__(self):
+        return str(self.teacher_name)+": "+self.subject_name
 

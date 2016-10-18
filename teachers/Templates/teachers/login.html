@@ -1,8 +1,11 @@
-{% extends 'teachers/base.html' %}
-
-{% block body %}
-
-
+<html>
+<head><meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
 <style type="text/css">
          body
         {
@@ -50,7 +53,7 @@
                     {% if error_message %}
                         <p><strong>{{ error_message }}</strong></p>
                     {% endif %}
-                    <form class="form-horizontal" role="form" action="{% url 'teachers:studentDB'%}" method="post" enctype="multipart/form-data">
+                    <form class="form-horizontal" role="form" action="" method="POST" enctype="multipart/form-data">
                         {% csrf_token %}
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="id_username">
@@ -110,4 +113,4 @@
 
 </body>
 
-{% endblock %}
+</html>

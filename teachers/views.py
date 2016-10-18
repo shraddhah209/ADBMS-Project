@@ -10,15 +10,15 @@ from django import forms
 from django.views.generic import View
 from django.views.generic.edit import CreateView
 from django.core.urlresolvers import reverse_lazy
-from .models import Students
-from .forms import UserForm
+from .models import Students,Teacher
+from .forms import UserForm,LoginForm
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 
 def studentDB(request):
     json_key = 'Adbms-7c8aa9cf0720.json'
     scope = ['https://spreadsheets.google.com/feeds']
-    credentials = ServiceAccountCredentials.from_json_keyfile_name('c:/Users/Sarbjit/Desktop/Adbms-7c8aa9cf0720.json', scope)
+    credentials = ServiceAccountCredentials.from_json_keyfile_name('c:/Users/Nirmit/Downloads/Adbms-7c8aa9cf0720.json', scope)
     gc = gspread.authorize(credentials)
     wks = gc.open("test").sheet1
     student_list = ["student_roll","student_name","Exp1"]
@@ -120,38 +120,40 @@ def stud(request):
 def detail(request, student_roll):
     return HttpResponse("roll no is : "+str(student_roll)+"       name is : ")
 
-class UserFormView(View):
-    form_class = UserForm
-    template_name='teachers/login.html'
-
-    def get(self, request):
-        form = self.form_class(None)
-        return render(request, self.template_name, {'form': form})
-
-    def post(self, request):
-        form = self.form_class(request.POST)
-
-        if form.is_valid():
-            user = form.save(commit=False)
-            username=request.POST.get('username','')
-            password=request.POST.get('password','')
-            email=request.POST.get('email','')
-            #username = form.cleaned_data['username']
-            #password = form.cleaned_data['password']
-            #email=form.cleaned_data['email']
-            # to change users password
-            user.set_password(password)
-            user.save()
-
-            user = auth.authenticate(username=username, password=password, email=email)
-
-            if user is not None:
-                if user.is_active:
-                    login(request, user)
-                    return redirect('teachers: studentDB')
-
-        return render(request, self.template_name, {'form': form})
+#class UserFormView(View):
+def LoginFormView(request):
+    form_class = LoginForm
+    username="not entered"
+    if request.method=='POST':
+         form = form_class(data=request.POST)
+            #username = MyLoginForm.cleaned_data['username']
+            #password = MyLoginForm.cleaned_data['password']
+            #email = MyLoginForm.cleaned_data['email']
+         username=request.POST.get('username','')
+         password=request.POST.get('password','')
+         email=request.POST.get('email','')
+        #request.session['username'] = username
+         teacher=Teacher.objects.filter(teacher_name=username)
+         context = {
+                'username':username,
+                'teacher':teacher
+            }
+         template = loader.get_template("teachers/select.html")
+         return HttpResponse(template.render(context, request))
+            #return render(request, 'teachers/select.html', {"username": username})
+          #user = auth.authenticate(username=username, password=password, email=email)
+    return render(request, 'teachers/login.html', {"username": username})
 
 
+def select(request):
+    if request.session.has_key('username'):
+        username = request.session['username']
+        user=Teacher.objects.filter(teacher_name = username)
+    return render_to_response('teachers/select.html', {})
+
+def subject(request):
+    context = {}
+    template = loader.get_template("teachers/subject.html")
+    return HttpResponse(template.render(context, request))
 
 
