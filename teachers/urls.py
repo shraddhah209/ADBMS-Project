@@ -8,9 +8,10 @@ app_name = 'teachers'
 urlpatterns = [
     url(r'^studentDB$', views.studentDB, name='studentDB'),
     url(r'^(?P<student_roll>[0-9]+)/$', views.detail, name='detail'),
-    url(r'^login/$', views.UserFormView.as_view(), name='login'),
-    url(r'^save$', views.save, name='save')
-   # url(r'^bullshit$', views.bullshit, name='bullshit')
+    url(r'^login/$', views.LoginFormView, name='login'),
+    url(r'^select/$', views.select,name='select'),
+    url(r'^save$', views.save, name='save'),
+    url(r'^subject$', views.subject, name='subject')
 ]
 
 if settings.DEBUG:

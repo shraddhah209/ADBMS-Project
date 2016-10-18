@@ -1,0 +1,16 @@
+<html>
+<script>var screen = "Checked"</script>
+<body>
+<div  style="margin-left: 30px;">
+    Welcome {{username}} !!! <br>
+{% for entry in teacher %}
+     <input type="radio" name="subject" value="{{ entry.subject_name}}" checked="Checked" > {{ entry.subject_name }} <br>
+    <script>var screen = ""</script>
+{% endfor %}
+    <br><br>
+
+    <a href="/teachers/subject" > <button  type="submit" name="submit"> SUBMIT SUBJECT </button> </a>
+
+</div>
+</body>
+</html>
