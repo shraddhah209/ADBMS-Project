@@ -1,4 +1,7 @@
+{% extends 'teachers/base.html' %}
 
+{% block body %}
+            <div class="col-md-6">
 {% load getattribute %}
 
 <style>
@@ -12,6 +15,7 @@ table.two   {
     display: inline-block;
 }​
 </style>
+                <CENTER>
 {% for c in coobj %}
 <h2>{{c.co_no}}. {{ c.description }}</h2>
 {% endfor %}
@@ -60,3 +64,6 @@ table.two   {
         </td>
     </tr>{%      endfor %}
 </table>
+
+</div>
+{% endblock %}
