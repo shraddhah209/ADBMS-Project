@@ -1,8 +1,9 @@
 {% extends 'teachers/base.html' %}
 
 {% block body %}
-<div  style="margin-left: 30px;">
-
+<div  style="margin-left: 30px; font-family: TimesNewRoman;
+    font-size: 17px;">
+<center>
 <form action="" method="post" enctype="multipart/form-data">
     {% csrf_token %}
  <b>Select Course Outcome : &nbsp;</b>
@@ -15,6 +16,6 @@
     {{ form.as_p }}
     <button type="submit">Submit</button>
 </form>
-
+</center>
 </div>
 {% endblock %}

@@ -78,7 +78,12 @@ def FinalADBMS(request):
         });\
      });\
 </script>\
-</head>\
+<style> th, td {\
+    padding: 15px;\
+    text-align: left;\
+    font-family: TimesNewRoman;\
+    font-size: 20px;\
+}</style></head>\
 <body>\
     		<div class='wrapper'>\
     			<div class='container'>\
@@ -265,8 +270,141 @@ def COSelectRange(request):
     return render(request, 'copo/Selection.html', {'form': form_class, 'co':co})
 
 
+def mapCOPO(request):
+    c = 1
+    Atdmap1 = COatdadbms.objects.all()
+    S = Students.objects.all()
+    sem = Students.objects.all().aggregate(Avg('final_marks'))
+    for key, value in sem.items():
+        semmarks = value
+    semmarks = int(semmarks)
+    semmarks = round((semmarks * 100 / 80), 2)
+    v = Students.objects.all().aggregate(Avg('viva'))
+    for key, value in v.items():
+        viva = value
+    viva = int(viva)
+    viva = round((viva * 100 / 25), 2)
+    avg = round(((viva + semmarks) / 2), 2)
+    noofstudents = Students.objects.all().count()
+    patterntest1 = re.compile("^([T][1][q][1-4]+)+$")
+    patterntest2 = re.compile("^([T][2][q][1-4]+)+$")
+    patternass = re.compile("^([A][1-2]+)+$")
+    patternexp = re.compile("^([E][x][p][1,2,3,4,5,6,7,8,9,10]+)+$")
+    po1 = 0
+    po2 = 0
+    po3 = 0
+    po4 = 0
+    po5 = 0
+    po6 = 0
+    p1 = 0
+    p2 = 0
+    p3 = 0
+    p4 = 0
+    p5 = 0
+    p6 = 0
+    while c <= 5:
+        k = 0
+        pt1 = 0
+        pt2 = 0
+        pa = 0
+        pexp = 0
+        t1 = 0
+        t2 = 0
+        exp = 0
+        ass = 0
+        for u in Atdmap1:
+            if int(u.cono) == c:
+                n = str(u.atd)
+                if patterntest1.match(n):
+                    t1 += 1
+                    for b in S:
+                        m = getattr(b, n)
+                        if m != 0:
+                            pt1 += int(m)
+                        else:
+                            t1 -= 1
+                            break
+                if patterntest2.match(n):
+                    t2 += 1
+                    for b in S:
+                        m = getattr(b, n)
+                        if m != 0:
+                            pt2 += int(m)
+                        else:
+                            t2 -= 1
+                            break
+                if patternass.match(n):
+                    ass += 1
+                    for b in S:
+                        m = getattr(b, n)
+                        if m != 0:
+                            pa += int(m)
+                        else:
+                            ass -= 1
+                            break
+                if patternexp.match(n):
+                    exp += 1
+                    for b in S:
+                        m = getattr(b, n)
+                        if m != 0:
+                            pexp += int(m)
+                        else:
+                            exp -= 1
+                            break
+        if t1:
+            k += 1
+            pt1 = round(pt1 * 100 / (noofstudents * 5 * t1), 2)
+        if t2:
+            k += 1
+            pt2 = round(pt2 * 100 / (noofstudents * 5 * t2), 2)
+        if ass:
+            k += 1
+            pa = round(pa * 100 / (noofstudents * 5 * ass), 2)
+        if exp:
+            k += 1
+        pexp = round(pexp * 100 / (noofstudents * 10 * exp), 2)
+        ptotal = round((pt1 + pt2 + pa + pexp) / k, 2)
+        davg = round(((avg + ptotal) / 2), 2)
 
 
+
+        copo = COadbms.objects.filter(co_no=str(c))
+        for po in copo:
+            #html = str(po.po1)+"-"+str(po.po2)+"-"+str(po.po3)+"-"+str(po.po4)+"-"+str(po.po5)+"-"+str(po.po6)+"-"
+            if po.po1 == '1':
+                po1 = po1 + davg
+                p1 += 1
+            if po.po2 == '1':
+                po2 = po2 + davg
+                p2 += 1
+            if po.po3 == '1':
+                po3 = po3 + davg
+                p3 += 1
+            if po.po4 == '1':
+                po4 = po4 + davg
+                p4 += 1
+            if po.po5 == '1':
+                po5 = po5 + davg
+                p5 += 1
+            if po.po6 == '1':
+                po6 = po6 + davg
+                p6 += 1
+        c += 1
+
+    po1 = round(po1/p1,2)
+    po2 = round(po2/p2,2)
+    po3 = round(po3/p3,2)
+    po4 = round(po4/p4,2)
+    po5 = round(po5/p5,2)
+    po6 = round(po6/p6,2)
+    po = PO.objects.all()
+    context = {
+        'po1':po1,'po2':po2,'po3':po3,'po4':po4,'po5':po5,'po6':po6, 'po':po
+    }
+    template = loader.get_template("copo/mapCOPO.html")
+    return HttpResponse(template.render(context, request))
+    #html = str(p1)+"--"+str(p2)+"--"+str(p3)+"--"+str(p4)+"--"+str(p5)+"--"+str(p6)+"--"+str(po1)+"--"+str(po2)+"--"+str(po3)+"--"+str(po4)+"--"+str(po5)+"--"+str(po6)+"--"
+    #return HttpResponse(html)
 
 
 

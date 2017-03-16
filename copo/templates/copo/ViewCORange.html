@@ -14,16 +14,26 @@ table.two   {
     float: left;
     display: inline-block;
 }​
+
+   th, td {
+    padding: 15px;
+    text-align: left;
+     font-family: TimesNewRoman;
+}
+tr:hover {
+  background-color: #ffa;
+}
 </style>
-                <CENTER>
+                <div id="div1"><CENTER>
 {% for c in coobj %}
 <h2>{{c.co_no}}. {{ c.description }}</h2>
 {% endfor %}
-<table class="one" border="4">
-    <tr><th>Student Roll no</th>
-        <th> Student Name</th>
+<table class="one" border="1" cellpadding="15">
+    <tr>
+        <th>&nbsp Student Roll no</th>
+        <th>&nbsp Student Name</th>
         {%      for u in Atdmap %}
-        <th>
+        <th>&nbsp
             {{ u.atd }}
         </th>
         {%      endfor %}
@@ -53,7 +63,7 @@ table.two   {
 
 </table>
 
-<table class="two" border="4">
+<table class="two" border="1" cellpadding="15">
     <tr><th>Total % in CO {{ co }}</th></tr>
     {%     for i in total %}
     <tr>
@@ -64,6 +74,7 @@ table.two   {
         </td>
     </tr>{%      endfor %}
 </table>
-
+</CENTER>
+                    </div>
 </div>
 {% endblock %}

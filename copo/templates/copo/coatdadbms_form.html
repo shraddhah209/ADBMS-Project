@@ -1,9 +1,10 @@
 {% extends 'teachers/base.html' %}
 
 {% block body %}
-<div  style="margin-left: 30px;"><center>
-<H4> Enter Course Outcome no. and Assessment Tool name:</H4>
-    <h5>Format: T<1/2>q<1/2/3/4> or A<1/2> or Exp<1-10></h5>
+<div  style="margin-left: 30px; font-family: TimesNewRoman;
+    font-size: 24px;"><center>
+<b>Enter Course Outcome no. and Assessment Tool name:</b>
+    <h3>Format: T<1/2>q<1/2/3/4> or A<1/2> or Exp<1-10></h3>
     <br><br>
 <form action ="" method="post" enctype="multipart/form-data">
     {% csrf_token %}
@@ -16,6 +17,6 @@
     }
     </script>
 </form>
-
+</center>
 </div>
 {% endblock %}

@@ -11,9 +11,18 @@ table.two   {
     float: left;
     display: inline-block;
 }​
+        th, td {
+    padding: 15px;
+    text-align: left;
+
+}
+tr:hover {
+  background-color: #ffa;
+}
+
 </style>
 
-<table class="one" border="2">
+<table class="one" border="1">
     <tr>
         <th> &nbsp; Student Name &nbsp; &nbsp;</th>
         {%      for u in a %}
@@ -44,7 +53,7 @@ table.two   {
 
 </table>
 
-<table class="two" border="2">
+<table class="two" border="1">
     <tr><th> &nbsp; Total % in CO </th></tr>
     {%     for i in total %}
     <tr>

@@ -9,4 +9,5 @@ urlpatterns = [
     url(r'^finalCO/$', views.FinalADBMS, name='finalco'),
     url(r'^selectCORange/$', views.COSelectRange, name='select'),
     url(r'^index/$', views.index, name='index'),
+    url(r'^mapCOPO/$', views.mapCOPO, name='mapCOPO'),
     ]
