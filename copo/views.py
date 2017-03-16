@@ -97,12 +97,13 @@ def FinalADBMS(request):
    							</div>\
     						<div id='navbar-collapse-02' class='collapse navbar-collapse'>\
     							<ul class='nav navbar-nav' id='nav'>\
-    								<li ><a href='/copo/po'>VIEW POS</a></li> \
+    								<li ><a href='/copo/po'>VIEW POS</a></li>\
 									<li ><a href='/copo/index/'>VIEW COS</a></li>\
-									<li ><a href='/copo/addCOAtd'>MAP COURSE OUTCOME</a></li>\
+									<li ><a href='/copo/addCOAtd'>MAP CO</a></li>\
 									<li ><a href='/copo/finalCO'>ATTAINMENT OF CO</a></li>\
-									<li ><a href='/copo/selectCORange/'>GET EACH STUDENTS ATTAINMENT</a></li>\
-                                    <li class='active'><a href='/teachers/studentDB'>STUDENT DB</a></li>\
+									<li ><a href='/copo/mapCOPO'>ATTAINMENT OF PO</a></li>\
+									<li ><a href='/copo/selectCORange/'>EACH STUDENTS ATTAINMENT</a></li>\
+									<li class='active '><a href='/teachers/studentDB'>STUDENT DB</a></li>\
                                 </ul>\
     							<ul class='nav navbar-nav navbar-right'>\
     								<li class='propClone'>\
