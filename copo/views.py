@@ -8,6 +8,7 @@ from django.shortcuts import render
 from django.db.models import Avg
 import re
 
+
 def index(request):
     s = COadbms.objects.all()
     template = loader.get_template("copo/index.html")
